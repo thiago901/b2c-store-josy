@@ -6,46 +6,43 @@
     <title>Catálogo da Loja</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
-            text-align: center;
+            background: linear-gradient(135deg, #F7CAC9, #F1E1DC);
+            color: #4F4F4F;
         }
         .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
+            max-width: 70%;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 2;
+            text-align: center;
         }
-        .profile {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin-top: 20px;
-            object-fit: cover
+        h1 {
+            font-size: 2.5em;
+            color: #3E3E3E;
+            margin-top: 0;
         }
         .descricao {
             margin: 20px 0;
-            font-size: 18px;
-        }
-        .categoria {
-            margin-top: 30px;
-        }
-        .produto {
-            background: #f4f4f4;
-            margin: 10px;
-            padding: 10px;
-            border-radius: 8px;
+            font-size: 1.3em;
+            color: #7D7D7D;
         }
         .whatsapp-button {
             display: inline-flex;
             align-items: center;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #25D366;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background-color: #4CAF50;
             color: white;
             text-decoration: none;
             font-size: 18px;
-            border-radius: 5px;
+            border-radius: 8px;
             border: none;
         }
         .whatsapp-button .icon {
@@ -56,30 +53,186 @@
             height: 24px;
             fill: white;
         }
+
+        /* Layout para categorias e produtos */
+        .categoria-section {
+            margin-top: 40px;
+            text-align: left;
+            width: 100%;
+        }
+        .categoria-titulo {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #3E3E3E;
+        }
+        .produtos {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .produto {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .produto img {
+            margin-right: 10px;
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+        }
+        .produto a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+            margin-top: 10px;
+            padding: 15px;
+            
+        }
+
+        /* Formas geométricas no fundo */
+        .background-shape {
+            position: absolute;
+            top: 20px;
+            left: -100px;
+            width: 250px;
+            height: 250px;
+            background-color: #F1E1DC;
+            border-radius: 50%;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        .background-shape-two {
+            position: absolute;
+            bottom: -60px;
+            right: -120px;
+            width: 200px;
+            height: 200px;
+            background-color: #F7CAC9;
+            border-radius: 50%;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        .profile {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
+    <!-- <div class="background-shape"></div> -->
+    <!-- <div class="background-shape-two"></div> -->
+
     <div class="container">
         <img src="./public/profile.png" alt="Minha Foto" class="profile">
-        <h1>Minha Loja</h1>
-        <p class="descricao">Bem-vindo à minha loja! Aqui você encontra os melhores produtos com qualidade e preço justo.</p>
-        
-        <div class="categoria">
-            <h2>Categoria 1</h2>
-            <div class="produto">Produto 1</div>
-            <div class="produto">Produto 2</div>
-        </div>
-        
-        <div class="categoria">
-            <h2>Categoria 2</h2>
-            <div class="produto">Produto 3</div>
-            <div class="produto">Produto 4</div>
-        </div>
+        <h1>Josivánia Dias</h1>
+        <p class="descricao">Produtos que vão revolucionar a saúde do seu cabelo.</p>
+
+        <div id="categorias-container"></div>
 
         <a href="https://chat.whatsapp.com/GzCoAO5EHbG85hz614VpWy" class="whatsapp-button" target="_blank">
             <div class="icon h2"><svg stroke="currentColor" fill="currentColor" stroke-width="0" t="1569683925316" viewBox="0 0 1024 1024" version="1.1" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M713.5 599.9c-10.9-5.6-65.2-32.2-75.3-35.8-10.1-3.8-17.5-5.6-24.8 5.6-7.4 11.1-28.4 35.8-35 43.3-6.4 7.4-12.9 8.3-23.8 2.8-64.8-32.4-107.3-57.8-150-131.1-11.3-19.5 11.3-18.1 32.4-60.2 3.6-7.4 1.8-13.7-1-19.3-2.8-5.6-24.8-59.8-34-81.9-8.9-21.5-18.1-18.5-24.8-18.9-6.4-0.4-13.7-0.4-21.1-0.4-7.4 0-19.3 2.8-29.4 13.7-10.1 11.1-38.6 37.8-38.6 92s39.5 106.7 44.9 114.1c5.6 7.4 77.7 118.6 188.4 166.5 70 30.2 97.4 32.8 132.4 27.6 21.3-3.2 65.2-26.6 74.3-52.5 9.1-25.8 9.1-47.9 6.4-52.5-2.7-4.9-10.1-7.7-21-13z"></path><path d="M925.2 338.4c-22.6-53.7-55-101.9-96.3-143.3-41.3-41.3-89.5-73.8-143.3-96.3C630.6 75.7 572.2 64 512 64h-2c-60.6 0.3-119.3 12.3-174.5 35.9-53.3 22.8-101.1 55.2-142 96.5-40.9 41.3-73 89.3-95.2 142.8-23 55.4-34.6 114.3-34.3 174.9 0.3 69.4 16.9 138.3 48 199.9v152c0 25.4 20.6 46 46 46h152.1c61.6 31.1 130.5 47.7 199.9 48h2.1c59.9 0 118-11.6 172.7-34.3 53.5-22.3 101.6-54.3 142.8-95.2 41.3-40.9 73.8-88.7 96.5-142 23.6-55.2 35.6-113.9 35.9-174.5 0.3-60.9-11.5-120-34.8-175.6z m-151.1 438C704 845.8 611 884 512 884h-1.7c-60.3-0.3-120.2-15.3-173.1-43.5l-8.4-4.5H188V695.2l-4.5-8.4C155.3 633.9 140.3 574 140 513.7c-0.4-99.7 37.7-193.3 107.6-263.8 69.8-70.5 163.1-109.5 262.8-109.9h1.7c50 0 98.5 9.7 144.2 28.9 44.6 18.7 84.6 45.6 119 80 34.3 34.3 61.3 74.4 80 119 19.4 46.2 29.1 95.2 28.9 145.8-0.6 99.6-39.7 192.9-110.1 262.7z"></path></svg></div>
             Entrar no Grupo
         </a>
     </div>
+
+
+    <script>
+        // Dados das categorias e produtos
+        const categorias = [
+            {
+                name: "Lançamentos e Promoções",
+                itens: [
+                    {
+                        name: "LINHA VELLO.png",
+                        product: "LANÇAMENTO KIT VELLO PROMOÇÃO IMPERDIVEL",
+                        url: "https://www.b2cstore.com.br/busca/VELLO/?parceiro=41915&tamanho=24&pagina=1"
+                    },
+                    {
+                        name: "PROMOCAO QUEIMA DE ESTOQUE.jpg",
+                        product: "PROMOÇÃO QUEIMA DE ESTOQUE",
+                        url: "https://www.b2cstore.com.br/produtos-ybera-atual/?parceiro=41915&tamanho=24&pagina=1"
+                    },
+                    {
+                        name: "CURSO INTELIGENCIA EMOCIONAL.webp",
+                        product: "CURSO INTELIGÊNCIA EMOCIONAL",
+                        url: "https://www.b2cstore.com.br/produtos-ybera-atual/?parceiro=41915&tamanho=24&pagina=1"
+                    },
+                    {
+                        name: "LINHA MIRRA.webp",
+                        product: "KIT MIRRA COMPLETO",
+                        url: "https://www.b2cstore.com.br/busca/KIT%20MIRRA/?parceiro=41915&tamanho=24&pagina=1"
+                    }
+                ]
+            },
+            {
+                name: "Equipamentos profissionais para uso do dia a dia e para fazer progressivas, indicado para cabeleireiras 👇.",
+                itens: [
+                    {
+                        name: "SECADOR.png",
+                        product: "SECADORES",
+                        url: "https://www.b2cstore.com.br/busca/secador/?parceiro=41915&tamanho=24&pagina=1"
+                    },
+                    {
+                        name: "ESCOVA.jpg",
+                        product: "Escova Profissional da Fashion Gold",
+                        url: "https://www.b2cstore.com.br/produto/kit-escovas-profissionais-stylist-fashion-gold-150855?parceiro=41915"
+                    },
+                    {
+                        name: "CHAPINHA.jpg",
+                        product: "CHAPINHAS",
+                        url: "https://www.b2cstore.com.br/produto/prancha-de-cabelo-alisadora-stylist-blacktitan-ultra-150802?parceiro=41915"
+                    }
+                ]
+            }
+        ];
+
+        
+function criarCategorias() {
+    const container = document.getElementById("categorias-container");
+
+    let htmlContent = "";  // Armazenando o conteúdo HTML como string
+
+    categorias.forEach(categoria => {
+        // Criando o HTML da categoria e dos produtos
+        let categoriaHtml = `
+            <div class="categoria-section">
+                <div class="categoria-titulo">${categoria.name}</div>
+                <div class="produtos">
+        `;
+
+        categoria.itens.forEach(item => {
+            categoriaHtml += `
+                <div class="produto">
+                    <a href="${item.url}" target="_blank">
+                        <img src="./public/products/${item.name}"/>
+                        <p>${item.product}</p>    
+                    </a>
+                    
+                </div>
+            `;
+        });
+
+        categoriaHtml += `</div></div>`;  // Fechando as tags
+
+        htmlContent += categoriaHtml;  // Adicionando o HTML da categoria ao conteúdo
+    });
+
+    // Definindo o conteúdo HTML de uma vez com innerHTML
+    container.innerHTML = htmlContent;
+}
+
+// Chama a função para gerar as categorias e produtos
+criarCategorias();
+
+    </script>
 </body>
 </html>
